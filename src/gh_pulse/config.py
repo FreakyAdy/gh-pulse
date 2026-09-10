@@ -2,8 +2,12 @@
 
 from dataclasses import dataclass, field
 from pathlib import Path
+from typing import TYPE_CHECKING
 
 import yaml
+
+if TYPE_CHECKING:
+    from gh_pulse.gh_wrapper import GHWrapper
 
 
 @dataclass
@@ -45,7 +49,7 @@ class Config:
         with open(config_path, 'w') as f:
             yaml.safe_dump(self.__dict__, f)
 
-    def auto_discover_repos(self, gh_wrapper) -> list[str]:
+    def auto_discover_repos(self, gh_wrapper: 'GHWrapper') -> list[str]:
         """Auto-discover repos from gh CLI."""
         try:
             repos = gh_wrapper.get_repos(limit=100)

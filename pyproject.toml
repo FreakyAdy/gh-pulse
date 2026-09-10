@@ -40,6 +40,7 @@ dev = [
     "pytest-asyncio>=0.23.0",
     "ruff>=0.5.0",
     "mypy>=1.8.0",
+    "types-PyYAML>=6.0",
 ]
 
 [project.urls]
@@ -56,6 +57,7 @@ dev = [
     "pytest-asyncio>=0.23.0",
     "ruff>=0.5.0",
     "mypy>=1.8.0",
+    "types-PyYAML>=6.0",
 ]
 
 [tool.ruff]

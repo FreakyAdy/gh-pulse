@@ -74,8 +74,8 @@ def cmd_repos(args: argparse.Namespace) -> int:
         for repo in repos:
             _print(f'{repo.name} {"(private)" if repo.private else ""}')
     else:
-        for repo in config.repos:
-            _print(repo)
+        for repo_name in config.repos:
+            _print(repo_name)
     return 0
 
 
@@ -118,7 +118,8 @@ def main() -> int:
     if not args.command:
         # Default to 'run' when no subcommand is given
         args = parser.parse_args(['run'])
-    return args.func(args)
+    ret = args.func(args)
+    return int(ret) if isinstance(ret, int) else 0
 
 
 if __name__ == '__main__':

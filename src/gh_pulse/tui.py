@@ -1,6 +1,7 @@
 """TUI dashboard for gh-pulse."""
 
 from datetime import datetime
+from typing import Any
 
 from rich.text import Text
 from textual.app import App, ComposeResult
@@ -17,7 +18,7 @@ from gh_pulse.models import PR, CIStatus
 class PRTable(DataTable):
     """Data table for displaying PRs."""
 
-    def __init__(self, repo_name: str, *args, **kwargs):
+    def __init__(self, repo_name: str, *args: Any, **kwargs: Any) -> None:
         super().__init__(*args, **kwargs)
         self.repo_name = repo_name
         self.cursor_type = 'row'
@@ -60,7 +61,7 @@ class PRTable(DataTable):
 class RepoPanel(Static):
     """Panel for a single repository."""
 
-    def __init__(self, repo_name: str, *args, **kwargs):
+    def __init__(self, repo_name: str, *args: Any, **kwargs: Any) -> None:
         super().__init__(*args, **kwargs)
         self.repo_name = repo_name
         self.prs: list[PR] = []
@@ -121,7 +122,7 @@ class GHPulseApp(App):
         Binding('c', 'toggle_closed', 'Closed'),
     ]
 
-    repos = reactive([])
+    repos: reactive[list[str]] = reactive([])
     config: Config = Config()
     gh_wrapper: GHWrapper = GHWrapper()
     last_refresh: datetime | None = None
@@ -211,7 +212,7 @@ class GHPulseApp(App):
         self.config.show_closed = not self.config.show_closed
         self.app.run_worker(self.refresh_data())
 
-    def action_quit(self) -> None:
+    async def action_quit(self) -> None:
         self.exit()
 
 

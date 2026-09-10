@@ -13,7 +13,7 @@ class GHWrapper:
     def __init__(self, timeout: int = 30):
         self.timeout = timeout
 
-    def _run(self, args: list[str]) -> dict[str, Any] | list[Any]:
+    def _run(self, args: list[str]) -> Any:
         """Run gh command and return parsed JSON."""
         cmd = ['gh'] + args
         result = subprocess.run(cmd, capture_output=True, text=True, timeout=self.timeout)
@@ -33,8 +33,12 @@ class GHWrapper:
             '--json',
             'nameWithOwner,owner,isPrivate,visibility',
         ])
+        if not isinstance(data, list):
+            return []
         return [
-            Repo(name=item['nameWithOwner'], private=item.get('isPrivate', False)) for item in data
+            Repo(name=item['nameWithOwner'], private=item.get('isPrivate', False))
+            for item in data
+            if isinstance(item, dict)
         ]
 
     def get_prs(self, repo: str, state: str = 'open') -> list[PR]:
@@ -49,7 +53,9 @@ class GHWrapper:
             '--json',
             'number,title,author,state,url,createdAt,updatedAt,headRefName,baseRefName,isDraft,mergeable,reviewDecision,statusCheckRollup',
         ])
-        return [self._parse_pr(item, repo) for item in data]
+        if not isinstance(data, list):
+            return []
+        return [self._parse_pr(item, repo) for item in data if isinstance(item, dict)]
 
     def get_review_requests(self, repo: str | None = None) -> list[ReviewRequest]:
         """Get PRs where the current user is requested for review."""
@@ -64,8 +70,12 @@ class GHWrapper:
         if repo:
             args.extend(['--repo', repo])
         data = self._run(args)
+        if not isinstance(data, list):
+            return []
         review_requests = []
         for item in data:
+            if not isinstance(item, dict):
+                continue
             repo_name = item.get('repository', {}).get('nameWithOwner', repo or 'unknown')
             pr = self._parse_pr(item, repo_name)
             pr.review_requested = True
@@ -83,7 +93,7 @@ class GHWrapper:
             '--json',
             'number,title,author,state,url,createdAt,updatedAt,headRefName,baseRefName,isDraft,mergeable,reviewDecision,statusCheckRollup,reviews,reviewRequests',
         ])
-        if not data:
+        if not isinstance(data, dict):
             return None
         return self._parse_pr(data, repo)
 
