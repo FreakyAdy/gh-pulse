@@ -44,9 +44,9 @@ dev = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/FreakyAdy/week35-gh-pulse"
-Repository = "https://github.com/FreakyAdy/week35-gh-pulse"
-Issues = "https://github.com/FreakyAdy/week35-gh-pulse/issues"
+Homepage = "https://github.com/FreakyAdy/gh-pulse"
+Repository = "https://github.com/FreakyAdy/gh-pulse"
+Issues = "https://github.com/FreakyAdy/gh-pulse/issues"
 
 [project.scripts]
 gh-pulse = "gh_pulse.main:main"

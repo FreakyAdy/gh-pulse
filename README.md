@@ -5,7 +5,7 @@
 
 **Stay on top of your team's code review cycle and CI health without leaving your terminal.**
 
-[![CI / Quality Gate](https://github.com/FreakyAdy/week35-gh-pulse/actions/workflows/ci.yml/badge.svg)](https://github.com/FreakyAdy/week35-gh-pulse/actions)
+[![CI / Quality Gate](https://github.com/FreakyAdy/gh-pulse/actions/workflows/ci.yml/badge.svg)](https://github.com/FreakyAdy/gh-pulse/actions)
 [![Tests Passing](https://img.shields.io/badge/tests-18%2F18%20passed%20(100%25)-brightgreen.svg)](tests/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![Python 3.10+](https://img.shields.io/badge/python-3.10%2B-blue.svg)](https://python.org)
@@ -43,7 +43,7 @@
 Monitoring multiple repositories with live CI rollup, draft filtering, and keyboard navigation:
 
 ```bash
-$ gh-pulse run --repos astral-sh/uv Textualize/textual FreakyAdy/week35-gh-pulse
+$ gh-pulse run --repos astral-sh/uv Textualize/textual FreakyAdy/gh-pulse
 ```
 
 ```text
@@ -62,7 +62,7 @@ $ gh-pulse run --repos astral-sh/uv Textualize/textual FreakyAdy/week35-gh-pulse
   #4120  feat: add smooth wheel scrolling to DataTable   @willmcgugan  [SUCCESS]  3d
   #4115  fix: border rendering glitch on Windows Term    @davep        [SUCCESS]  5d
 
-  [FreakyAdy/week35-gh-pulse] - 1 open PR
+  [FreakyAdy/gh-pulse] - 1 open PR
   ------------------------------------------------------------------------------
   #1     v0.1.0: open-source release preparation         @FreakyAdy    [SUCCESS]  0d
 
@@ -189,15 +189,15 @@ Choose the method that fits your environment:
 
 ```bash
 # Method 1: Install using uv (Recommended - fast & isolated)
-uv tool install git+https://github.com/FreakyAdy/week35-gh-pulse.git
+uv tool install git+https://github.com/FreakyAdy/gh-pulse.git
 
 # Method 2: Install from source for development
-git clone https://github.com/FreakyAdy/week35-gh-pulse.git
-cd week35-gh-pulse
+git clone https://github.com/FreakyAdy/gh-pulse.git
+cd gh-pulse
 uv sync
 
 # Method 3: Install via standard pip
-pip install git+https://github.com/FreakyAdy/week35-gh-pulse.git
+pip install git+https://github.com/FreakyAdy/gh-pulse.git
 ```
 
 > **Prerequisite:** [GitHub CLI (`gh`)](https://cli.github.com/) installed and authenticated:
@@ -239,7 +239,7 @@ gh-pulse repos --discover
 gh-pulse run --repos astral-sh/uv Textualize/textual
 
 # Monitor your personal repositories
-gh-pulse run --repos FreakyAdy/week35-gh-pulse
+gh-pulse run --repos FreakyAdy/gh-pulse
 ```
 
 ---
@@ -278,7 +278,7 @@ gh-pulse init
 
 # List of repositories to track (owner/repo format)
 repos:
-  - FreakyAdy/week35-gh-pulse
+  - FreakyAdy/gh-pulse
   - astral-sh/uv
   - Textualize/textual
 
@@ -336,7 +336,7 @@ Contributions are welcome! Whether it's adding new CI check visualizations, colo
 
 * **[CONTRIBUTING.md](CONTRIBUTING.md)**: Setup guide, code standards, and PR workflow.
 * **[CHANGELOG.md](CHANGELOG.md)**: Version history and release notes.
-* **[Issue Tracker](https://github.com/FreakyAdy/week35-gh-pulse/issues)**: Bug reports and feature suggestions.
+* **[Issue Tracker](https://github.com/FreakyAdy/gh-pulse/issues)**: Bug reports and feature suggestions.
 
 ### Local Development & Verification
 
@@ -366,7 +366,7 @@ Distributed under the **[MIT License](LICENSE)**.
 1. Open your terminal with a dark theme (e.g., Catppuccin, Tokyo Night, or Dracula) set to 100x30 columns.
 2. Run:
    ```bash
-   gh-pulse run --repos astral-sh/uv Textualize/textual FreakyAdy/week35-gh-pulse
+   gh-pulse run --repos astral-sh/uv Textualize/textual FreakyAdy/gh-pulse
    ```
 3. Allow the dashboard to populate with PRs showing mixed CI statuses (green, red, yellow).
 4. Use arrow keys to select a failing PR, press <kbd>o</kbd> to demonstrate browser deep-linking, then press <kbd>d</kbd> to toggle drafts.
